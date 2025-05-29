@@ -1,0 +1,49 @@
+//variables
+$primary-color: #3498db;
+$success-color: #27ae60;
+$danger-color: #e74c3c;
+
+//*****************estilos**************
+$button-styles: (
+    //define los estilos de los botones
+    Primary:( //estilos para el boton principal
+        background-color: $primary-color, //asigna el color de fondo primario
+        color: white, //establece el color del texto como blanco
+    ),
+    success:(background-color: $success-color,
+        color: white,
+    ),
+    danger:(background-color: $danger-color,
+        color: white,
+    ),
+);
+
+
+
+//estilos para los botones generales
+
+.button {
+    padding: 10px 20px; //agrega  un relleno vertical y horizontal
+    border: none; //elimina el borde del boton
+    border-radius: 5px; //bordes redondeados
+    cursor: pointer; //cambia el cursor a una mano cuando se pase el raton
+    font-size: 1rem; //establece el tamano de la fuente
+    margin: 5px; //agrega un margen de pixeles
+    transition: background-color 0.3s ease; //anade una transicion suave para el cambio de color
+
+    &:hover {
+        background-color: darken($primary-color, 10%); //cambia el color de fondo a un tono mas oscuro cuando se pasa el raton
+    }
+}
+
+
+@each $button, $styles in $button-styles { //estilos especificos para cada uno de los botones
+    .#{$button} {     //crea una clase para cadda estilo de boton [primario,exito, peligro
+        background-color: map-get($styles, background-color);  //establece el color de fondo  utilizado por los estilos
+        color: map-get($styles, color);   //establece el color de texto
+
+        &:hover {
+            background-color: darken(map-get($style, background-color), 10%); //cambia el color mas oscuto al pasar el hover
+        }
+    }
+}
